@@ -11,11 +11,13 @@ const Nav = () => {
           <Link href='/'>Home</Link>
         </li>
         <li>
+          <Link href='/blog'>Blog</Link>
+        </li>
+        <li>
           <Link href='/about'>About</Link>
         </li>
       </ul>
       <Login />
-      {/* <div className={navStyles.sign_up}>User</div> */}
     </nav>
   )
 }
