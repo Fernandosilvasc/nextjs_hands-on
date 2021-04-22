@@ -1,4 +1,6 @@
 import Link from 'next/link'
+
+import Login from './Login'
 import navStyles from '../styles/Nav.module.css'
 
 const Nav = () => {
@@ -12,7 +14,8 @@ const Nav = () => {
           <Link href='/about'>About</Link>
         </li>
       </ul>
-      <div className={navStyles.sign_up}>User</div>
+      <Login />
+      {/* <div className={navStyles.sign_up}>User</div> */}
     </nav>
   )
 }

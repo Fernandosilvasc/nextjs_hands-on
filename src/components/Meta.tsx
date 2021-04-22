@@ -14,9 +14,10 @@ const Meta = ({ title, keywords, description }) => {
 }
 
 Meta.defaultProps = {
-  title: 'ITBR-Canada',
+  title: 'NextJS_Hands-on',
   keywords: 'web development, programming, immigration',
-  description: 'We are ITBR Canada, a community of Brazilians who work in IT in Canada and we aim to bring together Brazilians who are here or who are planning to migrate here. Our goal is to spread knowledge about the steps to immigration and also to hold technical events to bring the community together.',
+  description: `In our eleventh meeting we will talk about some of the most used frameworks for front-end development.
+  We will see in practice an application with Next.js. An open source React front-end development web framework that enables features such as server-side rendering and generation of static websites for React-based web applications`,
 }
 
 export default Meta

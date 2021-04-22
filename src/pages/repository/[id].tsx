@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
+
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client'
 
 import api from '../../services/github_api'
 
@@ -11,30 +14,44 @@ import repositoryStyles from '../../styles/Repository.module.css'
 
 const repository = ({ repository }) => {
   const { isFallback } = useRouter()
+  const router = useRouter()
+  const [ session ] = useSession()
 
   if (isFallback) {
     return <p>Loading...</p>;
   }
 
+  useEffect(() => {
+    !session && router.push('/')
+  },[])
+
+  if (session) {
+    return (
+      <>
+        <Meta title={repository.name} description={repository.description} />
+        <div className={repositoryStyles.card}>
+          <h1>{repository.name}</h1>
+          {repository.description ? (
+            <p>{repository.description}</p>
+          ) : (
+            <p>
+            I am working on it, the description will be provided
+            soon.
+          </p>
+          )} 
+        </div>
+        <div className={repositoryStyles.link_box}>
+          <a href={repository.html_url} target="_blank" className={repositoryStyles.link_repo}>GitHub source</a>
+          <Link href='/'>Go Back</Link>
+        </div>
+      </>
+    )
+  }
+  
   return (
-    <>
-      <Meta title={repository.name} description={repository.description} />
-      <div className={repositoryStyles.card}>
-        <h1>{repository.name}</h1>
-        {repository.description ? (
-          <p>{repository.description}</p>
-        ) : (
-          <p>
-          I am working on it, the description will be provided
-          soon.
-        </p>
-        )} 
-      </div>
-      <div className={repositoryStyles.link_box}>
-        <a href={repository.html_url} target="_blank" className={repositoryStyles.link_repo}>GitHub source</a>
-        <Link href='/'>Go Back</Link>
-      </div>
-    </>
+    <div>
+      <p>Loading...</p>
+    </div>
   )
 }
 
